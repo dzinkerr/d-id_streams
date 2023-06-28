@@ -78,15 +78,9 @@ talkButton.onclick = async () => {
       const userInput = document.getElementById('user-input-field').value; // Get the user's input from the input field
       
       // Use the generateText method to generate text from the OpenAI API and passing the generated prompt, the model and max token value
-      await openAI.generateText(generatePrompt(topic), model, 800)
-        .then(text => {
-          // Logging the generated text to the console
-          // In the future, this will be replaced to upload the returned blog text to a WordPress site using the WordPress REST API
-          console.log(text);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+      const generatedText = await openAI.generateText(generatePrompt(userInput), model, 800).catch(error => {
+        console.error(error);
+      });
 
       const talkResponse = await fetch(`${DID_API.url}/talks/streams/${streamId}`, {
         method: 'POST',
@@ -97,7 +91,7 @@ talkButton.onclick = async () => {
             subtitles: 'false',
             provider: { type: 'microsoft', voice_id: 'en-US-JennyNeural' },
             ssml: true,
-            input: userInput // Use the user input as the input value
+            input: generatedText // Use the user input as the input value
           },
           config: {
             fluent: true,
