@@ -1,5 +1,22 @@
 'use strict';
 
+<<<<<<< HEAD
+=======
+import { OpenAI } from "./OpenAI.js";
+import dotenv from 'dotenv';
+dotenv.config();
+// Creating a new instance of the OpenAI class and passing in the OPENAI_KEY environment variable
+const openAI = new OpenAI("591ef217d0814ec4b104d015f4cf386c");
+const topic = 'NodeJs';
+const model = 'text-davinci-003';
+// Function to generate the prompt for the OpenAI API 
+// In the future, it will be moved to a helper class in the next code review
+const generatePrompt = (topic) => {
+    return `Write an blog post about "${topic}", it should in HTML format, include 5 unique points, using informative tone.`
+};
+
+
+>>>>>>> 3554e37eef65b0fe8f42322a3c0b4dfc6b7e3fa3
 import DID_API from './api.json' assert { type: 'json' };
 if (DID_API.key == '🤫') alert('Please put your api key inside ./api.json and restart..')
 
@@ -63,6 +80,13 @@ talkButton.onclick = async () => {
     if (peerConnection?.signalingState === 'stable' || peerConnection?.iceConnectionState === 'connected') {
       const userInput = document.getElementById('user-input-field').value; // Get the user's input from the input field
       
+<<<<<<< HEAD
+=======
+      // Use the generateText method to generate text from the OpenAI API and passing the generated prompt, the model and max token value
+      const generatedText = await openAI.generateText(generatePrompt(userInput), model, 5).catch(error => {
+        console.error(error);
+      });
+>>>>>>> 3554e37eef65b0fe8f42322a3c0b4dfc6b7e3fa3
 
       const talkResponse = await fetch(`${DID_API.url}/talks/streams/${streamId}`, {
         method: 'POST',
@@ -73,7 +97,7 @@ talkButton.onclick = async () => {
             subtitles: 'false',
             provider: { type: 'microsoft', voice_id: 'en-US-JennyNeural' },
             ssml: true,
-            input: userInput // Use the user input as the input value
+            input: generatedText // Use the user input as the input value
           },
           config: {
             fluent: true,
