@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
 
-apiKey = "591ef217d0814ec4b104d015f4cf386c";
+
 
 export class OpenAI {
     constructor(apiKey) {

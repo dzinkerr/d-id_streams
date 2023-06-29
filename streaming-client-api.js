@@ -4,7 +4,7 @@ import { OpenAI } from "./OpenAI.js";
 import dotenv from 'dotenv';
 dotenv.config();
 // Creating a new instance of the OpenAI class and passing in the OPENAI_KEY environment variable
-const openAI = new OpenAI(process.env.OPENAI_KEY);
+const openAI = new OpenAI("591ef217d0814ec4b104d015f4cf386c");
 const topic = 'NodeJs';
 const model = 'text-davinci-003';
 // Function to generate the prompt for the OpenAI API 
@@ -78,7 +78,7 @@ talkButton.onclick = async () => {
       const userInput = document.getElementById('user-input-field').value; // Get the user's input from the input field
       
       // Use the generateText method to generate text from the OpenAI API and passing the generated prompt, the model and max token value
-      const generatedText = await openAI.generateText(generatePrompt(userInput), model, 800).catch(error => {
+      const generatedText = await openAI.generateText(generatePrompt(userInput), model, 5).catch(error => {
         console.error(error);
       });
 
