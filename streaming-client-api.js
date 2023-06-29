@@ -31,7 +31,7 @@ connectButton.onclick = async () => {
     method: 'POST',
     headers: {'Authorization': `Basic ${DID_API.key}`, 'Content-Type': 'application/json'},
     body: JSON.stringify({
-      source_url: "https://png.pngtree.com/png-clipart/20230531/original/pngtree-beautiful-woman-nurse-in-white-shirt-png-image_9174340.png"
+      source_url: "https://cdn.midjourney.com/075b85f5-fe25-4cbd-9680-9655ce2bd8b7/0_1.png"
     }),
   });
 
@@ -62,8 +62,7 @@ talkButton.onclick = async () => {
   // Get the user input from the text input field
     if (peerConnection?.signalingState === 'stable' || peerConnection?.iceConnectionState === 'connected') {
       const userInput = document.getElementById('user-input-field').value; // Get the user's input from the input field
-      
-
+  
       const talkResponse = await fetch(`${DID_API.url}/talks/streams/${streamId}`, {
         method: 'POST',
         headers: { Authorization: `Basic ${DID_API.key}`, 'Content-Type': 'application/json' },
@@ -71,9 +70,9 @@ talkButton.onclick = async () => {
           script: {
             type: 'text',
             subtitles: 'false',
-            provider: { type: 'microsoft', voice_id: 'en-US-JennyNeural' },
+            provider: { type: 'microsoft', voice_id: 'en-US-ChristopherNeural' },
             ssml: true,
-            input: generatedText // Use the user input as the input value
+            input: userInput // Use the user input as the input value
           },
           config: {
             fluent: true,
