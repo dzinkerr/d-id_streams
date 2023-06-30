@@ -70,7 +70,7 @@ talkButton.onclick = async () => {
           script: {
             type: 'text',
             subtitles: 'false',
-            provider: { type: 'microsoft', voice_id: 'en-US-ChristopherNeural' },
+            provider: { type: 'microsoft', voice_id: 'en-US-JennyMultilingualNeural' },
             ssml: true,
             input: userInput // Use the user input as the input value
           },
